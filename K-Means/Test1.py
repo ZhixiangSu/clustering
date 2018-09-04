@@ -33,7 +33,6 @@ for t in range(100):
     for i in range(len(data)):
         for j in range(len(center.values[0])):
             center.values[label[i]][j]+=data.values[i][j]/num[label[i]]
-print(type(center))
 writer = pd.ExcelWriter(output_file)
 center.to_excel(writer)
 writer.close()
