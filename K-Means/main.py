@@ -28,16 +28,37 @@ def K_Means(input_file,output_file,initial_center):
             for j in range(len(center.values[0])):
                 center.values[label[i]][j]+=data.values[i][j]/num[label[i]]
     writer = pd.ExcelWriter(output_file)
-    center.to_excel(writer)
+    center.to_excel(writer,sheet_name="centers")
+    pd.DataFrame(label).to_excel(writer,sheet_name="labels")
     writer.close()
-
+'''
+筛选寻找合适的中心点
+def set_initial_center(initial_values,initial_center,line,value):
+    if line<len(initial_values):
+        for i in range(len(initial_values[line])):
+            value1=value+[initial_values[line][i]]
+            set_initial_center(initial_values,initial_center,line+1,value1)
+    else:initial_center.append(value)
+'''
 if __name__ == '__main__':
-    input_file = "input.xlsx"
-    output_file = "output.xlsx"
-    initial_center = [
-        [1, 1, 1],
-        [10, 10, 10],
-        [10, 1, 10],
-        [10, 100, 100]
+    input_file = "input.xls"
+    output_file = "output.xls"
+
+    initial_values=[
+        [0.3,2.2],
+        [0.2],
+        [0.2],
+        [0.2,1.5],
+        [0,1.2],
+        [0.8,1,1.4]
     ]
+    initial_center=[[0.3, 0.2, 0.2, 0.2, 0, 0.8],
+                     [0.3, 0.2, 0.2, 0.2, 1.2, 0.8],
+                     [0.3, 0.2, 0.2, 1.5, 0, 0.8],
+                     [0.3, 0.2, 0.2, 1.5, 1.2, 1.4],
+                     [2.2, 0.2, 0.2, 0.2, 0, 0.8],
+                     [2.2, 0.2, 0.2, 0.2, 1.2, 1],
+                     [2.2, 0.2, 0.2, 0.2, 1.2, 1.4]]
+#    initial_center=[]
+#    set_initial_center(initial_values,initial_center,0,[])
     K_Means(input_file, output_file, initial_center)
