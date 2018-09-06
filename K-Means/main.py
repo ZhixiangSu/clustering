@@ -41,7 +41,7 @@ def set_initial_center(initial_values,initial_center,line,value):
     else:initial_center.append(value)
 '''
 if __name__ == '__main__':
-    input_file = "input.xls"
+    input_file = "../input.xls"
     output_file = "output.xls"
 
     initial_values=[
