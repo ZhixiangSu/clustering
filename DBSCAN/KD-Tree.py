@@ -5,6 +5,8 @@ class Node:
     def __init__(self,data,level):
         self.data=data
         self.level=level
+        self.left=None
+        self.right=None
     def add_left(self,node):
         self.left=node
     def add_right(self,node):
@@ -27,4 +29,3 @@ def divide(data,level):
         node.add_right(divide(right_data,level+1))
     return node
 root=divide(input,0)
-print(root)
